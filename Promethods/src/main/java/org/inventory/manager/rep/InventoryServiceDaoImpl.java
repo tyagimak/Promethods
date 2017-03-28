@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.inventory.manager.config.HibernateUtil;
 import org.inventory.manager.model.Product;
-import org.inventory.manager.util.HibernateUtil;
 
 public class InventoryServiceDaoImpl implements InventoryServiceDao{
 

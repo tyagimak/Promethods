@@ -1,5 +1,6 @@
 package org.inventory.manager.interaction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.inventory.manager.model.Product;
@@ -10,26 +11,32 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class PromethodController {
 
-	@RequestMapping(value="/inventory")
+	@Autowired
+	private InventoryServiceImpl inventoryServiceImpl;
+	
+	@RequestMapping(value="/inventory",method=RequestMethod.GET,produces="application/json")
 	public String getInventory(Model model){
 		model.addAttribute("message", "There is no product in inventory currently!! update the stock");
 		return "inventorypage";
 	}
 	
-	@Autowired
-	private InventoryServiceImpl inventoryServiceImpl;
-
-	@RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
-	@ResponseBody()
+	@RequestMapping(value = "/getproduct", method = RequestMethod.GET)
+	//@ResponseBody()
 	public String getAllProducts(Model model) {
-		List<Product> productList = inventoryServiceImpl.getProductList();
+		List<Product> productList = getproductList();
 		model.addAllAttributes(productList);
-		return "homepage";
+		return "inventorypage";
+	}
+
+	private List<Product> getproductList() {
+		List<Product> list = new ArrayList<>();
+		list.add(new Product("abc", "a", "xyz labs", 2000, 2500, 2));
+		list.add(new Product("bcd", "b", "yz labs", 1000, 1500, 5));
+		return list;
 	}
 
 	@RequestMapping(value = "/products/{id}", method = RequestMethod.GET, produces = "application/json")

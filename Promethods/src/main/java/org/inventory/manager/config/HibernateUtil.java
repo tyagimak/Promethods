@@ -1,4 +1,4 @@
-package org.inventory.manager.util;
+package org.inventory.manager.config;
 
 
 import org.hibernate.SessionFactory;

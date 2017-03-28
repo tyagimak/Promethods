@@ -8,5 +8,18 @@
 </head>
 <body>
 <h2>${message}</h2>
+<jsp:useBean id="product" class="org.inventory.manager.model.Product" scope="request"></jsp:useBean>
+<table>
+ <tr>
+    <th>Firstname</th>
+    <th>Lastname</th> 
+    <th>Age</th>
+  </tr>
+  <tr>
+    <td><jsp:getProperty property="name" name="product"/></td>
+    <td><jsp:getProperty property="company" name="product"/></td> 
+    <td><jsp:getProperty property="quantity" name="product"/></td>
+  </tr>
+</table>
 </body>
 </html>

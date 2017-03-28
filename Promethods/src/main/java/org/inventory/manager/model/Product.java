@@ -23,6 +23,12 @@ public class Product {
 	private long sellingPrice;
 	@Column(name = "Quantity")
 	private long quantity;
+	
+	
+
+	public Product() {
+		super();
+	}
 
 	public Product(String name, String type, String company, long buyPrice, long sellingPrice, long quantity) {
 		super();
